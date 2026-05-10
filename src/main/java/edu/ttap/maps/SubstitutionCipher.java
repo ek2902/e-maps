@@ -1,8 +1,11 @@
 package edu.ttap.maps;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.io.IOException;
 
 /**
@@ -17,13 +20,14 @@ public class SubstitutionCipher {
      * @param filename the name of the file containing the mapping
      * @return the cipher as a mapping between characters
      */
-    public static Map<Character, Character> createCipher(String filename) throws IOException{
+    public static Map<Character, Character> createCipher(String filename) throws IOException {
         AssociationList<Character, Character> cipher = new AssociationList<Character, Character>();
         Scanner text = new Scanner(new File(filename));
-        
-
-
-        // TODO: implement me!
+        String curLine;
+        while (text.hasNext()) {
+            curLine = text.nextLine();
+            cipher.put(curLine.charAt(0), curLine.charAt(2));
+        }        
         return cipher;
     }
 
@@ -36,8 +40,23 @@ public class SubstitutionCipher {
      * @return true iff the given mapping is a valid substitution cipher
      */
     public static boolean isValidCipher(Map<Character, Character> cipher) {
-        // TODO: implement me!
-        throw new UnsupportedOperationException("Unimplemented method 'isValidCipher'");
+        Set<Character> keys = cipher.keySet();
+        Set<Character> values = new HashSet();
+        values.addAll(cipher.values());
+        if (values.size() == 26 & keys.size() == 26) {
+            for (Character c : values) {
+                if (!(97 <= (int) c & (int) c <= 122)) {
+                    return false;
+                }
+            }
+            for (Character c : keys) {
+                if (!(97 <= (int) c & (int) c <= 122)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -48,8 +67,13 @@ public class SubstitutionCipher {
      * @return the inverse mapping of the given cipher
      */
     public static Map<Character, Character> invertCipher(Map<Character, Character> cipher) {
-        // TODO: implement me!
-        throw new UnsupportedOperationException("Unimplemented method 'invertCipher'");
+        Map<Character, Character> inverted = new HashMap<>();
+
+        for (Character c : cipher.keySet()) {
+            inverted.put(cipher.get(c), c);
+        }
+
+        return inverted;
     }
 
     /**
@@ -59,20 +83,47 @@ public class SubstitutionCipher {
      * @return the translated string
      */
     public static String translate(String s, Map<Character, Character> mapping) {
-        // TODO: implement me!
-        throw new UnsupportedOperationException("Unimplemented method 'translate'");
+        String translated = "";
+
+        for (int i = 0; i < s.length(); i++) {
+            Character gotten = mapping.get(s.charAt(i));
+            char toAdd = s.charAt(i);
+            if (gotten != null) {
+                toAdd = mapping.get(s.charAt(i));
+            }
+            translated += toAdd;
+        }
+        return translated;
     }
 
     /**
      * The main driver for the substitution cipher program.
      * @param args the driver's command-line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         if (args.length != 3) {
             System.err.println(
                 "Usage: java SubstitutionCipher <encode|decode> <cipherfile> <filename>");
             System.exit(1);
         }
-        // TODO: finish implementing me!
+
+        Scanner text = new Scanner(new File("src/data/"+args[2]));
+        String s = "";
+        while (text.hasNextLine()) {
+            s += text.nextLine();
+        }
+
+        Map<Character, Character> cipher = createCipher("src/data/"+args[1]);
+
+        if (!isValidCipher(cipher)) {
+            System.err.println("Cipher is not valid");
+            System.exit(1);
+        }
+
+        if (args[0].equals("decode")) {
+            cipher = invertCipher(cipher);
+        }
+
+        System.out.println(translate(s, cipher));
     }
 }

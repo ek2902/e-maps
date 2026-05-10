@@ -20,7 +20,7 @@ public class AssociationList<K, V> implements Map<K, V> {
         }
     }
 
-    public ArrayList<Pair<K, V>> map;
+    public ArrayList<Pair<K, V>> map = new ArrayList<>();
 
     /**
      * Clears the association list, removing all key-value pairs.
@@ -115,16 +115,17 @@ public class AssociationList<K, V> implements Map<K, V> {
     @Override
     public V put(K key, V value) {
         V ret = null;
-
+        System.out.println(map.size());
         for (int i = 0; i < map.size(); i++) {
-            if (map.get(i).fst.equals(key)) {
+            if ((map.get(i).fst).equals(key)) {
                 ret = map.get(i).snd;
                 map.get(i).snd = value;
-            } else {
-                Pair<K, V> add = new Pair<K, V>(key, value);
-                map.add(add);
+                return ret;
             }
         }
+
+        Pair<K, V> add = new Pair<K, V>(key, value);
+        map.add(add);
 
         return ret;
     }
@@ -137,8 +138,6 @@ public class AssociationList<K, V> implements Map<K, V> {
      */
     @Override
     public void putAll(Map<? extends K, ? extends V> m) {
-        for (int i = 0; i < m.size(); i++) {
-        }
         // TODO: implement me!
         throw new UnsupportedOperationException("Unimplemented method 'putAll'");
     }
@@ -186,10 +185,9 @@ public class AssociationList<K, V> implements Map<K, V> {
     public Collection<V> values() {
         Collection<V> vals = new ArrayList<>();
         for (int i = 0; i < map.size(); i++) {
-            put(map.get(i).fst, map.get(i).snd);
+            vals.add(map.get(i).snd);
         }
 
         return vals;
-        // TODO: Implement me!
     }
 }
