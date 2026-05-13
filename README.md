@@ -1,4 +1,4 @@
-# (_TODO: fill in the title of this assignment here!_)
+# Project 7: Loot Generator
 
 Authors: (_TODO: fill in your names here!_)
 

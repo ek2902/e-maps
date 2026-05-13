@@ -107,13 +107,13 @@ public class SubstitutionCipher {
             System.exit(1);
         }
 
-        Scanner text = new Scanner(new File("src/data/"+args[2]));
+        Scanner text = new Scanner(new File("src/data/" + args[2]));
         String s = "";
         while (text.hasNextLine()) {
             s += text.nextLine();
         }
 
-        Map<Character, Character> cipher = createCipher("src/data/"+args[1]);
+        Map<Character, Character> cipher = createCipher("src/data/" + args[1]);
 
         if (!isValidCipher(cipher)) {
             System.err.println("Cipher is not valid");
