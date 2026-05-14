@@ -1,12 +1,12 @@
 package edu.ttap.intmaps;
 
-import java.util.Map;
 import java.util.TreeSet;
 import java.util.Scanner;
 import java.util.Set;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
 
 class LetterCounter {
     private static class Pair<K, V> {
@@ -19,7 +19,9 @@ class LetterCounter {
             this.value = value;
         }
     }
+
     int arraySize = 200;
+
     ArrayList<Pair<Character, Integer>> map;
 
     public LetterCounter() {
@@ -106,30 +108,21 @@ class LetterCounter {
 
     public void print(int index) {
         if (map.get(index) != null) {
-            Pair<Character,Integer> p = map.get(index);
+            Pair<Character, Integer> p = map.get(index);
             System.out.println(p.key + " : " + p.value);
         }
     }
 }
 
+/** main integer maps class */
 public class IntegerMaps {
-    public static void reportCount(String path) throws IOException {
-        // int[] counts = new int[26];
-        // Scanner text = new Scanner(new File(path));
-        // while (text.hasNext()) {
-        //     String next = text.nextLine();
-        //     next.toLowerCase();
-        //     for (int i = 0; i < next.length(); i++) {
-        //         int c = ((int) next.charAt(i)) - 97;
-        //         if (0 <= c & c <= 26) {
-        //             counts[c]++;
-        //         }
-        //     }
-        // }
 
-        // for(int i = 0; i < 26; i++) {
-        //     System.out.println((char)(i + 97) + ": " + counts[i]);
-        // }
+    /**
+     * reports count of all characters in given file
+     * @param path input file
+     * @throws IOException
+     */
+    public static void reportCount(String path) throws IOException {
 
         LetterCounter letterCounter = new LetterCounter();
 
@@ -151,6 +144,13 @@ public class IntegerMaps {
         }
     }
 
+    /**
+     * counts all characters in given file
+     * 
+     * @param path input file
+     * @return number of characters
+     * @throws IOException
+     */
     public static int countChars(String path) throws IOException {
         Scanner text = new Scanner(new File(path));
         Set<Character> set = new TreeSet<>();

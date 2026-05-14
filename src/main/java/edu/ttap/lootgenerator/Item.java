@@ -1,24 +1,26 @@
 package edu.ttap.lootgenerator;
 
+/**
+ * an item
+ */
 public class Item {
-    String name;
-    String prefix;
-    String suffix;
-    String mod;
+    String name = "";
 
+    String minac = "";
     
-    int baseStat;
-    int affStat;
-    int modStat;
+    String maxac = "";
 
-    public Item (String name) {
+    /**
+     * item constructor
+     * @param name name of item
+     * @param minac minimum for stat
+     * @param maxac maximum for stat
+     */
+
+    public Item(String name, String minac, String maxac) {
         this.name = name;
-    }
 
-    public Item (String name, int baseStat, int affStat) {
-        this.name = name;
-
-        this.baseStat = baseStat;
-        this.affStat = affStat;
+        this.minac = minac;
+        this.maxac = maxac;
     }
 }

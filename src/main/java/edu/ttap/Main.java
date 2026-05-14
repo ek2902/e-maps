@@ -2,8 +2,9 @@ package edu.ttap;
 
 import java.io.IOException;
 
-import edu.ttap.intmaps.IntegerMaps;
-import edu.ttap.maps.SubstitutionCipher;
+//import edu.ttap.intmaps.IntegerMaps;
+import edu.ttap.lootgenerator.LootGenerator;
+//import edu.ttap.maps.SubstitutionCipher;
 
 /**
  * The driver for our lab on lists.
@@ -17,6 +18,7 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
         // SubstitutionCipher.main(args);
-        IntegerMaps.reportCount("src/data/pg2600.txt");
+        // IntegerMaps.reportCount("src/data/pg2600.txt");
+        LootGenerator.main(args);
     }
 }

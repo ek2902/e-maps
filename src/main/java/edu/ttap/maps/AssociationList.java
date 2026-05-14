@@ -11,9 +11,21 @@ import java.util.Set;
  */
 public class AssociationList<K, V> implements Map<K, V> {
 
+    /**
+     * Backing for a pair structure
+     */
+    
     public class Pair<T, U> {
+        
         public T fst;
+        
         public U snd;
+        
+        /**
+         * pair constructor
+         * @param fst first elt
+         * @param snd second elt
+         */
         public Pair(T fst, U snd) {
             this.fst = fst;
             this.snd = snd;
@@ -50,7 +62,7 @@ public class AssociationList<K, V> implements Map<K, V> {
      */
     @Override
     public boolean containsValue(Object value) {
-       for (int i = 0; i < map.size(); i++) {
+        for (int i = 0; i < map.size(); i++) {
             if (map.get(i).snd.equals(value)) {
                 return true;
             }
