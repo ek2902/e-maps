@@ -1,6 +1,6 @@
 # Project 7: Loot Generator
 
-Authors: (_TODO: fill in your names here!_)
+Authors: Eva Kapoor, Ella Tobben
 
 ## Build commands
 
@@ -10,6 +10,6 @@ Authors: (_TODO: fill in your names here!_)
 
 ## Resources
 
-*   (_TODO: fill in resources here!_)
-*   ...
-*   ...
+*   Ella + Ella's Proj. 7 code
+*   VSCode
+*   TTAP website
